@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ManaM Overseas And Education Consultancy</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background: #004080; color: red; padding: 20px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+
+    /* Achievements Slider */
+    .achievements-slider {
+      background: #00264d;
+      color: white;
+      overflow: hidden;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slideShow 9s infinite;
+    }
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 40px;
+    }
+    @keyframes slideShow {
+      0%, 30% { transform: translateX(0%); }
+      33%, 63% { transform: translateX(-100%); }
+      66%, 96% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1') center/cover;
+      height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;
+    }
+    .hero h1 { font-size: 2.5rem; }
+    .btn { background: #ff6600; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+
+    section { padding: 50px 20px; text-align: center; }
+    h2 { color: #004080; }
+    footer { background: #333; color: white; text-align: center; padding: 20px; }
+
+    /* Chatbot */
+    .chatbot {
+      position: fixed; bottom: 20px; right: 20px; width: 300px;
+      border: 1px solid #ccc; border-radius: 10px; background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); overflow: hidden; display: none;
+    }
+    .chat-header {
+      background: #004080; color: white; padding: 10px; text-align: center;
+      cursor: pointer;
+    }
+    .chat-body {
+      height: 250px; padding: 10px; overflow-y: auto; text-align: left; font-size: 14px;
+    }
+    .chat-footer {
+      display: flex; border-top: 1px solid #ccc;
+    }
+    .chat-footer input {
+      flex: 1; border: none; padding: 10px;
+    }
+    .chat-footer button {
+      background: #004080; color: white; border: none; padding: 10px 15px; cursor: pointer;
+    }
+    .chat-toggle {
+      position: fixed; bottom: 20px; right: 20px; background: #004080; color: white;
+      border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1 style="color:white;,display: flex;align-items: center;gap: 10px;"> <img src="C:\Users\Administrator\Pictures\Screenshots\logo.jpg" alt="Logo" style="height:80px; width:auto;align:bottom;">ManaM Overseas And Education Consultancy</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Achievements Slider -->
+  <div class="achievements-slider">
+    <div class="slides">
+      <div class="slide">🌍 10+ Countries</div>
+      <div class="slide">🎓 50+ Top Universities Partnerships</div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div>
+      <h1 style="color:red;">Fly Your Dreams High – Study Abroad</h1>
+      <a class="btn" href="https://wa.me/919966497279">Apply Now</a>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We help students pursue higher education abroad with expert counseling, university shortlisting, and visa assistance.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>✅ Free Counseling | ✅ University Shortlisting | ✅ Visa Assistance | ✅ Loan Guidance</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📍 1st Floor,D,NO:1/1/203, Above HDFC Bank, Gurazala, Andhra Pradesh</p>
+    <p>📞 +91 9966497279 | @manam_overseas</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 ManaM Overseas and Educational Consultancy. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Chatbot -->
+  <button class="chat-toggle" onclick="toggleChat()">💬</button>
+  <div class="chatbot" id="chatbot">
+    <div class="chat-header" onclick="toggleChat()">Skyline Chatbot</div>
+    <div class="chat-body" id="chatBody">
+      <p><b>Bot:</b> Hello! Ask me about our services, contact info, or universities.</p>
+    </div>
+    <div class="chat-footer">
+      <input id="userInput" type="text" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      let bot = document.getElementById("chatbot");
+      bot.style.display = (bot.style.display === "block") ? "none" : "block";
+    }
+
+    function sendMessage() {
+      let input = document.getElementById("userInput").value;
+      if(input.trim() === "") return;
+      let chatBody = document.getElementById("chatBody");
+
+      chatBody.innerHTML += "<p><b>You:</b> " + input + "</p>";
+      chatBody.innerHTML += "<p><b>Bot:</b> " + getBotResponse(input) + "</p>";
+
+      document.getElementById("userInput").value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+      if (input.includes("hello") || input.includes("hi")) return "Hello! How can I assist you about studying abroad?";
+      if (input.includes("services")) return "We provide Free Counseling, University Shortlisting, Visa Assistance, and Loan Guidance.";
+      if (input.includes("contact")) return "You can reach us at 📞 +91 996649 97279 or ✉️ info@skylineoverseas.com";
+      if (input.includes("uk")) return "Top UK universities: Oxford, Cambridge, Manchester, Edinburgh, and more.";
+      return "Sorry, I didn’t understand that. Please ask about services, contact, or universities.";
+    }
+  </script>
+
+</body>
+</html>
